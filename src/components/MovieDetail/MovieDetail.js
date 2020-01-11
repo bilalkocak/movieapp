@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import {calculateDuration} from "../../helper/helper";
+
 import './MovieDetail.sass'
 
 const data = [
@@ -39,7 +41,7 @@ class MovieDetail extends Component {
                                 </div>
                             </div>
                             <div className="movieOtherInfo">
-                                {movie.year} &middot; {movie.genres} &middot; {movie.duration}
+                                {movie.year} &middot; {movie.genres} &middot; {calculateDuration(movie.duration)}
                             </div>
                             <div className="movieStoryline">
                                 {movie.storyline}

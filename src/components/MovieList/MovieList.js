@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import './MovieList.sass'
+import {calculateDuration} from "../../helper/helper";
 
 const data = [
     {
@@ -48,7 +49,7 @@ class MovieList extends Component {
                                     {movie.originalTitle}
                                 </div>
                                 <div className="movieOtherInfo">
-                                    {movie.year} &middot; {movie.genres} &middot; {movie.duration}
+                                    {movie.year} &middot; {movie.genres} &middot; {calculateDuration(movie.duration)}
                                 </div>
                                 <div className="movieRating">
                                     <span className="movieRate">{movie.imdbRating}</span>/10
