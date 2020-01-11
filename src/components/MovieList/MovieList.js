@@ -34,6 +34,7 @@ const data = [
 
 class MovieList extends Component {
     render() {
+        const {history} = this.props;
         return (
             <div className={"movieList"}>
                 {data.map(movie =>
@@ -47,7 +48,7 @@ class MovieList extends Component {
                                     {movie.originalTitle}
                                 </div>
                                 <div className="movieOtherInfo">
-                                    {movie.year} - {movie.genres} - {movie.duration}
+                                    {movie.year} &middot; {movie.genres} &middot; {movie.duration}
                                 </div>
                                 <div className="movieRating">
                                     <span className="movieRate">{movie.imdbRating}</span>/10
@@ -57,7 +58,9 @@ class MovieList extends Component {
                                 </div>
                             </div>
 
-                            <div className={"movieDetailButton"}>MOVIE DETAILS</div>
+                            <div className={"movieDetailButton"}
+                                 onClick={() => history.push('/movie-detail/'+movie.id)}>MOVIE DETAILS
+                            </div>
                         </div>
                     </div>
                 )}
