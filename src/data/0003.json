@@ -1,0 +1,13 @@
+{
+  "id": "0003",
+  "year": "2008",
+  "genres": ["Action", "Crime", "Drama"],
+  "duration": "PT152M",
+  "originalTitle": "The Dark Knight",
+  "imdbRating": 5.0,
+  "directors": ["Christopher Nolan"],
+  "writers": ["Jonathan Nolan", "Christopher Nolan"],
+  "storyline": "Set within a year after the events of Batman Begins, Batman, Lieutenant James Gordon, and new district attorney Harvey Dent successfully begin to round up the criminals that plague Gotham City until a mysterious and sadistic criminal mastermind known only as the Joker appears in Gotham, creating a new wave of chaos. Batman's struggle against the Joker becomes deeply personal, forcing him to \"confront everything he believes\" and improve his technology to stop him. A love triangle develops between Bruce Wayne, Dent and Rachel Dawes.                Written by\nLeon Lombardi",
+  "actors": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+  "posterurl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SY500_CR0,0,337,500_AL_.jpg"
+}

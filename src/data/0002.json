@@ -1,0 +1,13 @@
+{
+  "id": "0002",
+  "year": "1972",
+  "genres": ["Crime", "Drama"],
+  "duration": "PT175M",
+  "originalTitle": "The Godfather",
+  "imdbRating": 9.2,
+  "actors": ["Marlon Brando", "Al Pacino", "James Caan"],
+  "writers": ["Mario Puzo", "Francis Ford Coppola"],
+  "directors": ["Francis Ford Coppola"],
+  "storyline": "When the aging head of a famous crime family decides to transfer his position to one of his subalterns, a series of unfortunate events start happening to the family, and a war begins between all the well-known families leading to insolence, deportation, murder and revenge, and ends with the favorable successor being finally chosen.                Written by\nJ. S. Golden",
+  "posterurl": "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SY1000_CR0,0,704,1000_AL_.jpg"
+}

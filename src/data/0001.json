@@ -1,0 +1,13 @@
+{
+  "id": "0001",
+  "year": "1994",
+  "genres": ["Crime", "Drama"],
+  "duration": "PT142M",
+  "originalTitle": "The Shawshank Redemption",
+  "imdbRating": 9.3,
+  "actors": ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
+  "writers": ["Stephen King"],
+  "directors": ["Frank Darabont"],
+  "storyline": "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",
+  "posterurl": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
+}
