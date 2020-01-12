@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import Button from "../Common/Button/Button";
 
-import {calculateDuration} from "../../helper/helper";
+import {calculateDuration, parseArrayToString} from "../../helper/helper";
 
 import './MovieDetail.sass'
 
@@ -27,36 +28,45 @@ class MovieDetail extends Component {
         return (
             <div className={"movieDetailContainer"}>
                 <div className={"movieDetail"}>
-                        <div className={"movieImg"}>
-                            <img src={movie.posterurl} alt=""/>
-                        </div>
-                        <div className={"movieInfoContainer"}>
-                            <div className={"movieDetailInfoTopSide"}>
-                                <div className="movieName">
-                                    {movie.originalTitle}
-                                </div>
-                                <div className={"movieDetailRating"}>{movie.imdbRating}</div>
-                                <div className={"movieRatingBar"}>
-                                    <div style={{width: (movie.imdbRating * 10 + "%")}}></div>
-                                </div>
+                    <div className={"movieImg"}>
+                        <img src={movie.posterurl} alt=""/>
+                        <div className="movieImgButton">+</div>
+                    </div>
+                    <div className={"movieInfoContainer"}>
+                        <div className={"movieDetailInfoTopSide"}>
+                            <div className="movieName">
+                                {movie.originalTitle}
                             </div>
-                            <div className="movieOtherInfo">
-                                {movie.year} &middot; {movie.genres} &middot; {calculateDuration(movie.duration)}
-                            </div>
-                            <div className="movieStoryline">
-                                {movie.storyline}
-                            </div>
-                            <div className="divider"></div>
-                            <div className={"movieCrew"}>
-                                <div><div className={"crewTitle"}>Director:</div> <div className={"crewName"}>{movie.directors}</div></div>
-                                <div><div className={"crewTitle"}>Writers:</div> <div className={"crewName"}>{movie.writers}</div></div>
-                                <div><div className={"crewTitle"}>Stars:</div> <div className={"crewName"}>{movie.actors}</div></div>
+                            <div className={"movieDetailRating"}>{movie.imdbRating}</div>
+                            <div className={"movieRatingBar"}>
+                                <div style={{width: (movie.imdbRating * 10 + "%")}}></div>
                             </div>
                         </div>
+                        <div className="movieOtherInfo">
+                            {movie.year} &middot; {parseArrayToString(movie.genres)} &middot; {calculateDuration(movie.duration)}
+                        </div>
+                        <div className="movieStoryline">
+                            {movie.storyline}
+                        </div>
+                        <div className="divider"></div>
+                        <div className={"movieCrew"}>
+                            <div>
+                                <div className={"crewTitle"}>Director:</div>
+                                <div className={"crewName"}>{parseArrayToString(movie.directors)}</div>
+                            </div>
+                            <div>
+                                <div className={"crewTitle"}>Writers:</div>
+                                <div className={"crewName"}>{parseArrayToString(movie.writers)}</div>
+                            </div>
+                            <div>
+                                <div className={"crewTitle"}>Stars:</div>
+                                <div className={"crewName"}>{parseArrayToString(movie.actors)}</div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div className={"movieDetailButton"}
-                             onClick={() => history.push('/movie-detail/' + movie.id)}>+ ADD TO WATCHLIST
-                        </div>
+                    <Button text={"+ ADD TO WATCHLIST"}
+                            onClick={() => history.push('/movie-detail/' + movie.id)}/>
                 </div>
 
             </div>

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import Button from "../Common/Button/Button";
+
+import {calculateDuration, parseArrayToString} from "../../helper/helper";
 
 import './MovieList.sass'
-import {calculateDuration} from "../../helper/helper";
 
 const data = [
     {
@@ -39,7 +41,7 @@ class MovieList extends Component {
         return (
             <div className={"movieList"}>
                 {data.map(movie =>
-                    <div className={"movieCard"}>
+                    <div key={movie.id} className={"movieCard"}>
                         <div>
                             <div className={"movieImg"}>
                                 <img src={movie.posterurl} alt=""/>
@@ -49,7 +51,7 @@ class MovieList extends Component {
                                     {movie.originalTitle}
                                 </div>
                                 <div className="movieOtherInfo">
-                                    {movie.year} &middot; {movie.genres} &middot; {calculateDuration(movie.duration)}
+                                    {movie.year} &middot; {parseArrayToString(movie.genres)} &middot; {calculateDuration(movie.duration)}
                                 </div>
                                 <div className="movieRating">
                                     <span className="movieRate">{movie.imdbRating}</span>/10
@@ -59,9 +61,8 @@ class MovieList extends Component {
                                 </div>
                             </div>
 
-                            <div className={"movieDetailButton"}
-                                 onClick={() => history.push('/movie-detail/'+movie.id)}>MOVIE DETAILS
-                            </div>
+                            <Button text={"MOVIE DETAILS"}
+                                    onClick={() => history.push('/movie-detail/' + movie.id)}/>
                         </div>
                     </div>
                 )}
