@@ -1,36 +1,59 @@
+@import "../App.sass"
+
 .movieDetailContainer
   width: 100vw
   display: flex
 
 
   .movieDetail
-    background-image: linear-gradient(#ff6600, #fff, #fff, #fff, #fff)
+    background-image: linear-gradient($color-orange, #fff, #fff, #fff, #fff)
     padding: 24px 5vw 44px 5vw
 
     .movieImg
       display: flex
+      position: relative
+      width: 43vw
 
       img
         width: 43vw
         max-height: 100%
         border-radius: 6px
 
+      .movieImgButton
+        $buttonWidth: 12vw
+        position: absolute
+        bottom: -$buttonWidth/2
+        right: -$buttonWidth/2
+        background-color: $color-orange
+        width: $buttonWidth
+        height: $buttonWidth
+        border-radius: $buttonWidth
+        color: #ffffff
+        font-weight: bolder
+        display: flex
+        align-items: center
+        justify-content: center
+        cursor: pointer
+        font-size: 30px
+
     .movieInfoContainer
+      margin-bottom: 30px
+
       .movieDetailInfoTopSide
         display: flex
         align-items: center
         margin-top: 25px
 
         .movieName
-          font-size: 20px
+          font-size: 18px
           font-weight: bold
           margin-right: 5px
-          width: 30%
+          width: 35%
 
         .movieDetailRating
           font-size: 20px
-          color: #ff6600
-          border: 1px solid #ff6600
+          color: $color-orange
+          border: 1px solid $color-orange
           border-radius: 5px
           padding: 3px
           justify-content: center
@@ -47,13 +70,13 @@
           border-radius: 5px
 
           div
-            background-color: #ff6600
+            background-color: $color-orange
             height: 5px
             border-radius: 5px
 
       .movieOtherInfo
         font-size: 14px
-        color: #5d5d5d
+        color: $color-darkGray
         margin-top: 8px
 
       .movieStoryline
@@ -62,34 +85,20 @@
         font-family: 'PT Serif', serif
 
       .divider
-        background-color: #a4a4a4
+        background-color: $color-lightGray
         height: 1px
         width: 100%
         margin: 30px 0
+
       .movieCrew
         div
           display: flex
           font-size: 14px
+
           .crewTitle
-            width: 70px
+            width: 20%
             font-weight: bolder
+
           .crewName
-            color: #ff6600
-
-
-    .movieDetailButton
-      margin-top: 30px
-      display: flex
-      justify-content: center
-      align-items: center
-      color: #fff
-      font-size: 16px
-      font-weight: bolder
-      background-color: #ff6600
-      width: 78vw
-      height: 50px
-      border-radius: 8px
-      cursor: pointer
-      user-select: none
-      margin-right: auto
-      margin-left: auto
+            width: 80%
+            color: $color-orange

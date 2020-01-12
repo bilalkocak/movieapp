@@ -1,18 +1,21 @@
+@import "../App.sass"
+
 .movieList
   width: 100vw
   text-align: center
 
   .movieCard
-    background-image: linear-gradient(#ff6600, #ff6600, #fff, #fff, #fff)
+    background-image: linear-gradient($color-orange, $color-orange, #fff, #fff, #fff)
     padding: 44px 11vw 44px 11vw
 
     .movieImg
       img
         width: 78vw
-        height: auto
         border-radius: 8px
 
     .movieInfoContainer
+      margin-bottom: 30px
+
       .movieName
         margin-top: 49px
         font-size: 30px
@@ -20,12 +23,12 @@
 
       .movieOtherInfo
         font-size: 16px
-        color: #5d5d5d
+        color: $color-darkGray
         margin: 10px 0
 
       .movieRating
         font-size: 18px
-        color: #5d5d5d
+        color: $color-darkGray
 
         .movieRate
           color: #000
@@ -40,22 +43,7 @@
         border-radius: 5px
 
         div
-          background-color: #ff6600
+          background-color: $color-orange
           height: 5px
           border-radius: 5px
 
-
-    .movieDetailButton
-      margin-top: 30px
-      display: flex
-      justify-content: center
-      align-items: center
-      color: #fff
-      font-size: 18px
-      font-weight: bolder
-      background-color: #ff6600
-      width: 78vw
-      height: 50px
-      border-radius: 8px
-      cursor: pointer
-      user-select: none
