@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import ClipLoader from "react-spinners/ClipLoader";
 
 import Button from "../Common/Button/Button";
 
-import {calculateDuration, parseArrayToString} from "../../helper/helper";
+import {
+    calculateDuration,
+    parseArrayToString,
+    addFilmToWatchList,
+    deleteFilmFromWatchList,
+    isOnWatchList
+} from "../../helper/helper";
 
 import './MovieDetail.sass'
 import {getMovie} from "../../redux/actions/movies";
-import ClipLoader from "react-spinners/ClipLoader";
 
 
 class MovieDetail extends Component {
     state = {
-        isLoading: true
+        isLoading: true,
+        id: this.props.match.params.id,
+        isOnWatchList: isOnWatchList(this.props.match.params.id)
     };
 
     componentDidMount() {
@@ -21,7 +29,7 @@ class MovieDetail extends Component {
 
     getMovie = () => {
         new Promise((resolve, reject) => {
-            this.props.getMovie(this.props.match.params.id);
+            this.props.getMovie(this.state.id);
             resolve();
         }).then(() => {
             setTimeout(() => {
@@ -32,10 +40,28 @@ class MovieDetail extends Component {
         })
     };
 
+    addToWatchList = () => {
+        const id = this.state.id;
+
+        addFilmToWatchList(id);
+        this.setState({
+            isOnWatchList: isOnWatchList(id)
+        })
+    };
+
+    deleteFromWatchList = () => {
+        const id = this.state.id;
+
+        deleteFilmFromWatchList(id);
+        this.setState({
+            isOnWatchList: isOnWatchList(id)
+        })
+    };
+
 
     render() {
-        const {history, movies} = this.props;
-        const {isLoading} = this.state;
+        const {movies} = this.props;
+        const {isLoading, isOnWatchList} = this.state;
         const movie = movies.movie;
         return (
             <div className={"movieDetailContainer"}>
@@ -49,7 +75,8 @@ class MovieDetail extends Component {
                     /> : <div className={"movieDetail"}>
                         <div className={"movieImg"}>
                             <img src={movie.posterurl} alt=""/>
-                            <div className="movieImgButton">+</div>
+                            <div className={isOnWatchList ? "movieImgButton redButton" : "movieImgButton"}
+                                 onClick={isOnWatchList ? () => this.deleteFromWatchList() : () => this.addToWatchList()}>{isOnWatchList ? "-" : "+"}</div>
                         </div>
                         <div className={"movieInfoContainer"}>
                             <div className={"movieDetailInfoTopSide"}>
@@ -93,8 +120,9 @@ class MovieDetail extends Component {
                             </div>
                         </div>
 
-                        <Button text={"+ ADD TO WATCHLIST"}
-                                onClick={() => history.push('/movie-detail/' + movie.id)}/>
+                        <Button text={isOnWatchList ? "- REMOVE FROM WATCHLIST" : "+ ADD TO WATCHLIST"}
+                                isBackgroundRed={isOnWatchList}
+                                onClick={isOnWatchList ? () => this.deleteFromWatchList() : () => this.addToWatchList()}/>
                     </div>
                 }
 
