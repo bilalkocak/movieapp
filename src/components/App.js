@@ -2,13 +2,9 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import MovieList from "./MovieList/MovieList";
 import MovieDetail from "./MovieDetail/MovieDetail";
+import Error from "./404/Error";
 
 import './App.sass';
-
-
-const Error = () => (<div>
-    Hata sayfası
-</div>);
 
 class App extends Component {
 
