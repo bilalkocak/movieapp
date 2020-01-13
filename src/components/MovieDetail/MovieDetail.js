@@ -26,7 +26,7 @@ class MovieDetail extends Component {
         }).then(() => {
             setTimeout(() => {
                 this.setState({
-                    isLoading: true
+                    isLoading: false
                 });
             }, 1000)
         })
