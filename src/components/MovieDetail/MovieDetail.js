@@ -4,6 +4,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import Button from "../Common/Button/Button";
 import RatingBar from "../Common/RatingBar/RatingBar";
+import CrewInfo from './CrewInfo/CrewInfo.js';
 
 import {
     calculateDuration,
@@ -12,9 +13,10 @@ import {
     deleteFilmFromWatchList,
     isOnWatchList
 } from "../../helper/helper";
-
-import './MovieDetail.sass'
 import {getMovie} from "../../redux/actions/movies";
+
+
+import './MovieDetail.sass';
 
 
 class MovieDetail extends Component {
@@ -94,29 +96,7 @@ class MovieDetail extends Component {
                                 {movie.storyline}
                             </div>
                             <div className="divider"/>
-                            <div className={"movieCrew"}>
-                                <div>
-                                    <div className={"crewTitle"}>Director:</div>
-                                    <div className={"crewName"}>{movie.directors.map((item, index) => {
-                                        return <span key={index}><a
-                                            href="">{item}</a>{movie.directors.length - 1 !== index && ", "}</span>
-                                    })}</div>
-                                </div>
-                                <div>
-                                    <div className={"crewTitle"}>Writers:</div>
-                                    <div className={"crewName"}>{movie.writers.map((item, index) => {
-                                        return <span key={index}><a
-                                            href="">{item}</a>{movie.writers.length - 1 !== index && ", "}</span>
-                                    })}</div>
-                                </div>
-                                <div>
-                                    <div className={"crewTitle"}>Stars:</div>
-                                    <div className={"crewName"}>{movie.actors.map((item, index) => {
-                                        return <span key={index}><a
-                                            href="">{item}</a>{movie.actors.length - 1 !== index && ", "} </span>
-                                    })}</div>
-                                </div>
-                            </div>
+                            <CrewInfo actors={movie.actors} directors={movie.directors} writers={movie.writers}/>
                         </div>
 
                         <Button text={isOnWatchList ? "- REMOVE FROM WATCHLIST" : "+ ADD TO WATCHLIST"}
