@@ -1,77 +1,117 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import Button from "../Common/Button/Button";
 
 import {calculateDuration, parseArrayToString} from "../../helper/helper";
 
 import './MovieDetail.sass'
+import {getMovie} from "../../redux/actions/movies";
+import ClipLoader from "react-spinners/ClipLoader";
 
-const data = [
-    {
-        "id": "0001",
-        "year": "1994",
-        "genres": ["Crime", "Drama"],
-        "duration": "PT142M",
-        "originalTitle": "The Shawshank Redemption",
-        "imdbRating": 9.3,
-        "actors": ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
-        "writers": ["Stephen King"],
-        "directors": ["Frank Darabont"],
-        "storyline": "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",
-        "posterurl": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg"
-    }
-];
 
 class MovieDetail extends Component {
+    state = {
+        isLoading: true
+    };
+
+    componentDidMount() {
+        this.getMovie();
+    }
+
+    getMovie = () => {
+        new Promise((resolve, reject) => {
+            this.props.getMovie(this.props.match.params.id);
+            resolve();
+        }).then(() => {
+            setTimeout(() => {
+                this.setState({
+                    isLoading: true
+                });
+            }, 1000)
+        })
+    };
+
+
     render() {
-        const {history} = this.props;
-        const movie = data[0];
+        const {history, movies} = this.props;
+        const {isLoading} = this.state;
+        const movie = movies.movie;
         return (
             <div className={"movieDetailContainer"}>
-                <div className={"movieDetail"}>
-                    <div className={"movieImg"}>
-                        <img src={movie.posterurl} alt=""/>
-                        <div className="movieImgButton">+</div>
-                    </div>
-                    <div className={"movieInfoContainer"}>
-                        <div className={"movieDetailInfoTopSide"}>
-                            <div className="movieName">
-                                {movie.originalTitle}
+                {
+                    isLoading ? <ClipLoader
+                        size={150}
+                        color={"#ff6600"}
+                        css={
+                            `margin: auto`
+                        }
+                    /> : <div className={"movieDetail"}>
+                        <div className={"movieImg"}>
+                            <img src={movie.posterurl} alt=""/>
+                            <div className="movieImgButton">+</div>
+                        </div>
+                        <div className={"movieInfoContainer"}>
+                            <div className={"movieDetailInfoTopSide"}>
+                                <div className="movieName">
+                                    {movie.originalTitle}
+                                </div>
+                                <div className={"movieDetailRating"}>{movie.imdbRating}</div>
+                                <div className={"movieRatingBar"}>
+                                    <div style={{width: (movie.imdbRating * 10 + "%")}}></div>
+                                </div>
                             </div>
-                            <div className={"movieDetailRating"}>{movie.imdbRating}</div>
-                            <div className={"movieRatingBar"}>
-                                <div style={{width: (movie.imdbRating * 10 + "%")}}></div>
+                            <div className="movieOtherInfo">
+                                {movie.year} &middot; {parseArrayToString(movie.genres)} &middot; {calculateDuration(movie.duration)}
+                            </div>
+                            <div className="movieStoryline">
+                                {movie.storyline}
+                            </div>
+                            <div className="divider"/>
+                            <div className={"movieCrew"}>
+                                <div>
+                                    <div className={"crewTitle"}>Director:</div>
+                                    <div className={"crewName"}>{movie.directors.map((item, index) => {
+                                        return <span key={index}><a
+                                            href="">{item}</a>{movie.directors.length - 1 !== index && ", "}</span>
+                                    })}</div>
+                                </div>
+                                <div>
+                                    <div className={"crewTitle"}>Writers:</div>
+                                    <div className={"crewName"}>{movie.writers.map((item, index) => {
+                                        return <span key={index}><a
+                                            href="">{item}</a>{movie.writers.length - 1 !== index && ", "}</span>
+                                    })}</div>
+                                </div>
+                                <div>
+                                    <div className={"crewTitle"}>Stars:</div>
+                                    <div className={"crewName"}>{movie.actors.map((item, index) => {
+                                        return <span key={index}><a
+                                            href="">{item}</a>{movie.actors.length - 1 !== index && ", "} </span>
+                                    })}</div>
+                                </div>
                             </div>
                         </div>
-                        <div className="movieOtherInfo">
-                            {movie.year} &middot; {parseArrayToString(movie.genres)} &middot; {calculateDuration(movie.duration)}
-                        </div>
-                        <div className="movieStoryline">
-                            {movie.storyline}
-                        </div>
-                        <div className="divider"></div>
-                        <div className={"movieCrew"}>
-                            <div>
-                                <div className={"crewTitle"}>Director:</div>
-                                <div className={"crewName"}>{parseArrayToString(movie.directors)}</div>
-                            </div>
-                            <div>
-                                <div className={"crewTitle"}>Writers:</div>
-                                <div className={"crewName"}>{parseArrayToString(movie.writers)}</div>
-                            </div>
-                            <div>
-                                <div className={"crewTitle"}>Stars:</div>
-                                <div className={"crewName"}>{parseArrayToString(movie.actors)}</div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <Button text={"+ ADD TO WATCHLIST"}
-                            onClick={() => history.push('/movie-detail/' + movie.id)}/>
-                </div>
+                        <Button text={"+ ADD TO WATCHLIST"}
+                                onClick={() => history.push('/movie-detail/' + movie.id)}/>
+                    </div>
+                }
 
             </div>
         );
     }
 }
 
-export default MovieDetail;
+
+const mapStateToProps = state => {
+    return {
+        movies: state.movies
+    }
+};
+
+const mapDispatchToProps = {
+    getMovie
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail);
