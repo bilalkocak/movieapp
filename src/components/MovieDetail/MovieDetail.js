@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
 
 import Button from "../Common/Button/Button";
+import RatingBar from "../Common/RatingBar/RatingBar";
 
 import {
     calculateDuration,
@@ -84,9 +85,7 @@ class MovieDetail extends Component {
                                     {movie.originalTitle}
                                 </div>
                                 <div className={"movieDetailRating"}>{movie.imdbRating}</div>
-                                <div className={"movieRatingBar"}>
-                                    <div style={{width: (movie.imdbRating * 10 + "%")}}></div>
-                                </div>
+                                <RatingBar width={'60%'} rate={movie.imdbRating}/>
                             </div>
                             <div className="movieOtherInfo">
                                 {movie.year} &middot; {parseArrayToString(movie.genres)} &middot; {calculateDuration(movie.duration)}
