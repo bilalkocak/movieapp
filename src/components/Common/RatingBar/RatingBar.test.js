@@ -8,13 +8,13 @@ Enzyme.configure({adapter: new Adapter()});
 describe('RatingBar', () => {
     it("component renders correctly", () => {
         const wrapper = shallow(<RatingBar width={'50'} rate={7.8}/>);
-        console.log(1907, wrapper.prop('style').width);
+
         expect(wrapper.find(".movieRatingBar").exists()).toBe(true);
     });
 
     it("progress percentage correctly", () => {
         const wrapper = shallow(<RatingBar width={'50'} rate={7.8}/>);
-        console.log(1907, wrapper.prop('style').width);
+
         expect(wrapper.find(".movieRatingBar").children().prop('style').width).toBe('78%');
     })
 });
