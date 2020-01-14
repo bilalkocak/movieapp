@@ -21,7 +21,7 @@ class RatingBar extends Component {
     };
 
     render() {
-        const {width, rate} = this.props;
+        const {width} = this.props;
         const {rateBarPercentage} = this.state;
         return (
             <div className={"movieRatingBar"} style={{width}}>
