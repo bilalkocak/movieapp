@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ClipLoader from "react-spinners/ClipLoader";
+import CountUp from "react-countup";
 
 import Button from "../Common/Button/Button";
 import RatingBar from "../Common/RatingBar/RatingBar";
@@ -86,7 +87,9 @@ class MovieDetail extends Component {
                                 <div className="movieName">
                                     {movie.originalTitle}
                                 </div>
-                                <div className={"movieDetailRating"}>{movie.imdbRating}</div>
+                                <div className={"movieDetailRating"}>
+                                    <CountUp start={0.00} end={movie.imdbRating} decimal="," decimals={1} duration={2}/>
+                                </div>
                                 <RatingBar width={'60%'} rate={movie.imdbRating}/>
                             </div>
                             <div className="movieOtherInfo">
