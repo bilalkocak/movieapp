@@ -12,9 +12,14 @@ describe('RatingBar', () => {
         expect(wrapper.find(".movieRatingBar").exists()).toBe(true);
     });
 
+    it("progress percentage correctly on initial", () => {
+        const wrapper = shallow(<RatingBar width={'50'} rate={7.8}/>);
+        expect(wrapper.find(".movieRatingBar").children().prop('style').width).toBe(0);
+    });
+    
     it("progress percentage correctly", () => {
         const wrapper = shallow(<RatingBar width={'50'} rate={7.8}/>);
-
+        wrapper.setState({rateBarPercentage: "78%"});
         expect(wrapper.find(".movieRatingBar").children().prop('style').width).toBe('78%');
     })
 });
