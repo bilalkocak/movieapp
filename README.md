@@ -51,6 +51,7 @@ Yine data klasörü altındaki `{id}.json` dosyasından uygun olan filmin detayl
 #### 404 Page
 
 ![](https://raw.githubusercontent.com/bilalkocak/armut-fe/master/ScreenShots/404.png)
+
 App.js dosyasında tanımlanmış Route paternleri dışında bir url girilirse veya var olan id lerden başka bir id ile film istenirse bu sayfa açılır.
 
 
