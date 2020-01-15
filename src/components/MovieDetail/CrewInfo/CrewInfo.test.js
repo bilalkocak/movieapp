@@ -2,7 +2,6 @@ import React from "react";
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import CrewInfo from "./CrewInfo";
-import RatingBar from "../../Common/RatingBar/RatingBar";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -10,7 +9,7 @@ const actors = ['test1', "test2", "test3"];
 const writers = ['test1', "test2", "test3"];
 const directors = ['test1'];
 
-describe('RatingBar', () => {
+describe('CrewInfo', () => {
 
     const wrapper = shallow(<CrewInfo writers={actors} actors={writers} directors={directors}/>);
 
