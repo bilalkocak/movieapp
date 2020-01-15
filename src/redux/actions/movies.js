@@ -13,7 +13,12 @@ export function getMovies() {
 }
 
 export function getMovie(id) {
-    const data = require('../../data/' + id + '.json');
+    let data;
+    try {
+        data = require('../../data/' + id + '.json')
+    } catch (e) {
+        data = false
+    }
 
     return dispatch => {
         dispatch({
