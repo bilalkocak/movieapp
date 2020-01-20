@@ -2,6 +2,8 @@
 
 Bu proje  [Create React App](https://github.com/facebook/create-react-app) ile yapıldı.
 
+Sadece mobil ekranlar için tasarlandı masaüstü desteklenmiyor.
+
 ## Localde çalıştırmak
 
 ###### Gereksinimler
